@@ -5,10 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Book;
 use App\Models\Borrowing;
 use App\Models\Member;
-use App\Models\Transaction;
 use Carbon\Carbon;
+use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Barryvdh\DomPDF\Facade as PDF;
 
 class BorrowingController extends Controller
 {
@@ -25,7 +26,7 @@ class BorrowingController extends Controller
 												->select('borrowing.*', 'member.*', 'book.*')
 												->get();
 			
-			$dateNow = Carbon::now();
+			$dateNow = Carbon::now()->toDate();
 
       return view('admin.borrowing.index')->with([
 				"borrowings" => $borrowings,
@@ -96,7 +97,20 @@ class BorrowingController extends Controller
      */
     public function edit($id)
     {
-        //
+			$borrowing = DB::table('borrowing')
+										->join('member', 'borrowing.id_anggota', '=', 'member.id_anggota')
+										->join('book', 'borrowing.id_buku', '=', 'book.id_buku')
+										->select('borrowing.*', 'member.*', 'book.*')
+										->where('borrowing.id_peminjaman', '=', $id)
+										->get()->first();
+
+			$dateNow = Carbon::now()->toDateString();
+			$dateNextToSeventDay = Carbon::now()->addDay(7)->toDateString();
+			return view("admin.borrowing.edit")->with([
+				"borrowing" => $borrowing,
+				"dateNow" => $dateNow,
+				"dateNextToSeventDay" => $dateNextToSeventDay
+			]);
     }
 
     /**
@@ -108,7 +122,14 @@ class BorrowingController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+			$borrowing = Borrowing::find($id);
+			$borrowing->id_anggota = $request->id_anggota;
+			$borrowing->id_buku = $request->id_buku;
+			$borrowing->tanggal_pinjam = $request->tanggal_pinjam;
+			$borrowing->tanggal_kembali = $request->tanggal_kembali;
+			$borrowing->update();
+
+			return redirect('/home/borrowings')->with('success', 'data berhasil diupdate');
     }
 
     /**
@@ -121,4 +142,41 @@ class BorrowingController extends Controller
     {
         //
     }
+
+		public function bookReturn(Request $request, $id)
+    {
+			$tanggal_pinjam = $request->tanggal_pinjam;
+
+			$datetime_pinjam = new DateTime($tanggal_pinjam);
+			$datetime_dikembalikan = Carbon::now()->toDate();
+			$durasi_peminjaman = $datetime_pinjam->diff($datetime_dikembalikan)->days;
+
+			$borrowing = Borrowing::find($id);
+			$borrowing->id_anggota = $request->id_anggota;
+			$borrowing->id_buku = $request->id_buku;
+			$borrowing->tanggal_pinjam = $tanggal_pinjam;
+			$borrowing->tanggal_kembali = $request->tanggal_kembali;
+			$borrowing->status_peminjaman = $request->status_peminjaman;
+			$borrowing->tanggal_dikembalikan = $datetime_dikembalikan;
+			$borrowing->durasi_peminjaman = $durasi_peminjaman;
+			$borrowing->update();
+
+			return redirect('/home/borrowings')->with('success', 'data berhasil dikembalikan');
+    }
+
+		public function print_borrowings()
+		{
+			$borrowings = DB::table('borrowing')
+												->join('member', 'borrowing.id_anggota', '=', 'member.id_anggota')
+												->join('book', 'borrowing.id_buku', '=', 'book.id_buku')
+												->select('borrowing.*', 'member.*', 'book.*')
+												->get();
+    	$dateNow = Carbon::now()->format('d, M Y');
+ 
+    	$pdf = PDF::loadView('admin.borrowing.borrowings_pdf',[
+				'borrowings' => $borrowings,
+				'dateNow' => $dateNow
+			]);
+    	return $pdf->stream('laporan-daftar-peminjaman.pdf');
+		}
 }

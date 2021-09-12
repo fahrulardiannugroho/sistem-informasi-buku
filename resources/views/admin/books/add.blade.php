@@ -7,8 +7,15 @@
             <div class="card mt-3">
 								<div class="card-header">Tambah Buku</div>
                 <div class="card-body">
-									<form method="post" action="{{ url("/home/books") }}">
+									<form method="post" action="{{ url("/home/books") }}" enctype="multipart/form-data">
 										{{ csrf_field() }}
+										<div class="form-group row">
+											<label for="file" class="col-sm-2 col-form-label">Gambar Buku (Optional)</label>
+											<div class="col-sm-10">
+												<input name="file" type="file" id="file">
+											</div>
+										</div>
+
 										<div class="form-group row">
 											<label for="judulBuku" class="col-sm-2 col-form-label">Judul Buku</label>
 											<div class="col-sm-10">

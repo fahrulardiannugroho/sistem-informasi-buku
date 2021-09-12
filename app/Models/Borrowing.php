@@ -9,5 +9,5 @@ class Borrowing extends Model
 {
     use HasFactory;
 		protected $table = 'borrowing';
-		protected $primaryKey = 'id_transaksi';
+		protected $primaryKey = 'id_peminjaman';
 }

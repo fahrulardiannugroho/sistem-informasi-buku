@@ -2,7 +2,7 @@
 
 @section('content')
 	@section('content_header')
-	<h1>Kelola Buku</h1>
+	<h1>Transaksi Peminjaman</h1>
 	@endsection
 
 	<div class="container">
@@ -10,7 +10,10 @@
 					<div class="col">
 							<div class="card">
 									<div class="card-body">
-											<a href="/home/borrowings/add" class="btn btn-sm btn-primary mb-3"><i class="fas fa-plus"></i> Tambah Peminjaman</a>
+											<div class="row">
+												<a href="/home/borrowings/add" class="btn btn-sm btn-primary mb-3 ml-3"><i class="fas fa-plus"></i> Tambah Peminjaman</a>
+												<a href="/home/borrowings/print_borrowings" class="btn btn-sm btn-outline-danger mb-3 mr-3 ml-auto"><i class="fas fa-file-pdf"></i></i> Cetak PDF</a>
+											</div>
 
 											<table class="table table-striped table-bordered" id="memberTable">
 												<thead>
@@ -33,21 +36,39 @@
 																<td> {{ $borrowing->tanggal_pinjam }} </td>
 																<td> {{ $borrowing->tanggal_kembali }}</td>
 																<td>
-																	<!-- {{ $borrowing->status_peminjaman }} -->
-																	{{ date('d-m-Y'); }}
+
+																	@if ($borrowing->status_peminjaman == 1 && date('Y-m-d') > date('Y-m-d', strtotime($borrowing->tanggal_kembali)))
+																		<span class="badge badge-danger">
+																			Terlambat
+																		</span>
+																	@elseif ($borrowing->status_peminjaman == 0)
+																		<span class="badge badge-success">Dikembalikan</span>
+																	@elseif ($borrowing->status_peminjaman == 1)
+																		<span class="badge badge-warning">Dipinjam</span>
+																	@endif
+
 																</td>
 																<td>
 																	<div class="row">
-																		<div class="col"><a class="btn btn-sm btn-outline-primary" href="{{ url("/home/borrowing/show", $borrowing->id_peminjaman) }}"> Detail </a></div>
-																		<div class="col"><a class="btn btn-sm btn-outline-dark" href="{{ url("/home/borrowing/edit", $borrowing->id_peminjaman) }}"> Perpanjang </a></div>
-																		<div class="col">
-																			<form method="POST" action="/home/borrowing/{{$borrowing->id_peminjaman}}">
-																				{{ method_field('DELETE') }}
+																		<div class="col-3"><a class="btn btn-sm btn-outline-primary" href="{{ url("/home/borrowing/show", $borrowing->id_peminjaman) }}" title="Detail Peminjaman"><i class="fas fa-info-circle"></i></a></div>
+
+																		@if ($borrowing->status_peminjaman == 1)
+																		<div class="col-3"><a class="btn btn-sm btn-outline-dark" href="{{ url("/home/borrowing/edit", $borrowing->id_peminjaman) }}" title="Perpanjang"> <i class="fas fa-stopwatch"></i> </a></div>
+																		<div class="col-3">
+																			<form method="POST" action="/home/borrowing/return/{{$borrowing->id_peminjaman}}">
+																				{{ method_field('PUT') }}
 																				{{ csrf_field() }}
 
-																				<!-- <button onclick="return confirm('Hapus buku?')" type="submit" class="btn btn-sm btn-success">Kembalikan</button> -->
+																				<input name="id_anggota" type="number" value="{{ $borrowing->id_anggota }}" hidden>
+																				<input name="id_buku" type="number" value="{{ $borrowing->id_buku }}" hidden>
+																				<input name="tanggal_pinjam" type="date" value="{{ $borrowing->tanggal_pinjam }}"  hidden>
+																				<input name="tanggal_kembali" type="date" value="{{ $borrowing->tanggal_kembali }}" hidden>
+																				<input name="status_peminjaman" type="number" value="0" hidden>
+
+																				<button onclick="return confirm('Buku dikembalikan?')" type="submit" class="btn btn-sm btn-outline-success" title="Kembalikan Buku"><i class="fas fa-undo-alt"></i></button>
 																			</form>
 																		</div>
+																		@endif
 																	</div>
 																</td>
 														</tr>

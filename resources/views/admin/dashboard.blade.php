@@ -7,61 +7,73 @@
 
 	<div class="container">
 			<div class="row">
-					<div class="col-4">
-						<div class="small-box bg-info">
-              <div class="inner">
-                <h3>{{ $bookcount }}</h3>
+					<div class="col-md-4 col-sm-6 col-12">
+            <div class="info-box bg-gradient-info">
+              <span class="info-box-icon"><i class="fas fa-book"></i></span>
 
-                <p>Buku</p>
+              <div class="info-box-content">
+                <span class="info-box-text">Buku</span>
+                <span class="info-box-number"> {{ $bookcount }} </span>
+
+								<a href="/home/books" class="small-box-footer mt-3" style="color: white;">
+                	Info Lengkap <i class="fas fa-arrow-circle-right"></i>
+              	</a>
               </div>
-              <div class="icon">
-								<i class="fas fa-book"></i>
-              </div>
-              <a href="/home/books" class="small-box-footer">Selengkapnya <i class="fas fa-arrow-circle-right"></i></a>
+              <!-- /.info-box-content -->
             </div>
-					</div>
+            <!-- /.info-box -->
+          </div>
 
-					<div class="col-4">
-						<div class="small-box bg-info">
-              <div class="inner">
-                <h3>{{ $membercount }}</h3>
+					<div class="col-md-4 col-sm-6 col-12">
+            <div class="info-box bg-gradient-info">
+              <span class="info-box-icon"><i class="fas fa-user"></i></span>
 
-                <p>Anggota</p>
+              <div class="info-box-content">
+                <span class="info-box-text">Anggota</span>
+                <span class="info-box-number"> {{ $membercount }} </span>
+
+								<a href="/home/members" class="small-box-footer mt-3" style="color: white;">
+                	Info Lengkap <i class="fas fa-arrow-circle-right"></i>
+              	</a>
               </div>
-              <div class="icon">
-								<i class="fas fa-user"></i>
-              </div>
-              <a href="/home/members" class="small-box-footer">Selengkapnya <i class="fas fa-arrow-circle-right"></i></a>
+              <!-- /.info-box-content -->
             </div>
-					</div>
+            <!-- /.info-box -->
+          </div>
 
-					<div class="col-4">
-						<div class="small-box bg-info">
-              <div class="inner">
-                <h3>{{ $borrowingcount }}</h3>
+					<div class="col-md-4 col-sm-6 col-12">
+            <div class="info-box bg-gradient-info">
+              <span class="info-box-icon"><i class="fas fa-redo-alt"></i></span>
 
-                <p>Peminjaman</p>
+              <div class="info-box-content">
+                <span class="info-box-text">Peminjaman</span>
+                <span class="info-box-number"> {{ $borrowingcount }} </span>
+
+								<a href="/home/borrowings" class="small-box-footer mt-3" style="color: white;">
+                	Info Lengkap <i class="fas fa-arrow-circle-right"></i>
+              	</a>
               </div>
-              <div class="icon">
-								<i class="fas fa-arrow-alt-circle-up"></i>
-              </div>
-              <a href="/home/borrowings" class="small-box-footer">Selengkapnya <i class="fas fa-arrow-circle-right"></i></a>
+              <!-- /.info-box-content -->
             </div>
-					</div>
+            <!-- /.info-box -->
+          </div>
 
-					<div class="col-4">
-						<div class="small-box bg-info">
-              <div class="inner">
-                <h3>0</h3>
+					<div class="col-md-4 col-sm-6 col-12">
+            <div class="info-box bg-gradient-info">
+              <span class="info-box-icon"><i class="fas fa-undo-alt"></i></i></span>
 
-                <p>Pengembalian</p>
+              <div class="info-box-content">
+                <span class="info-box-text">Pengembalian</span>
+                <span class="info-box-number"> {{ $returncount }} </span>
+
+								<a href="/home/returns" class="small-box-footer mt-3" style="color: white;">
+                	Info Lengkap <i class="fas fa-arrow-circle-right"></i>
+              	</a>
               </div>
-              <div class="icon">
-								<i class="fas fa-arrow-alt-circle-down"></i>
-              </div>
-              <a href="#" class="small-box-footer">Selengkapnya <i class="fas fa-arrow-circle-right"></i></a>
+              <!-- /.info-box-content -->
             </div>
-					</div>
+            <!-- /.info-box -->
+          </div>
 			</div>
 	</div>
 @endsection

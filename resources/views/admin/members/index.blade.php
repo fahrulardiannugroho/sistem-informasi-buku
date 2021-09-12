@@ -10,7 +10,10 @@
 					<div class="col">
 							<div class="card">
 									<div class="card-body">
-											<a href="/home/members/add" class="btn btn-sm btn-primary mb-3"><i class="fas fa-plus"></i> Tambah Anggota</a>
+											<div class="row">
+												<a href="/home/members/add" class="btn btn-sm btn-primary mb-3 ml-3"><i class="fas fa-plus"></i> Tambah Anggota</a>
+												<a href="/home/members/print_members" class="btn btn-sm btn-outline-danger mb-3 mr-3 ml-auto"><i class="fas fa-file-pdf"></i></i> Cetak PDF</a>
+											</div>
 
 											<table class="table table-striped table-bordered" id="memberTable">
 												<thead>
@@ -33,14 +36,14 @@
 																<td> {{ $member->nomor_hp }}</td>
 																<td>
 																	<div class="row">
-																		<div class="col"><a class="btn btn-sm btn-outline-primary" href="{{ url("/home/member/show", $member->id_anggota) }}"> Detail </a></div>
-																		<div class="col"><a class="btn btn-sm btn-outline-dark" href="{{ url("/home/member/edit", $member->id_anggota) }}"> Edit </a></div>
+																		<div class="col"><a class="btn btn-sm btn-outline-primary" href="{{ url("/home/member/show", $member->id_anggota) }}" title="Detail"> <i class="fas fa-info-circle"></i> </a></div>
+																		<div class="col"><a class="btn btn-sm btn-outline-dark" href="{{ url("/home/member/edit", $member->id_anggota) }}" title="Edit"> <i class="fas fa-edit"></i> </a></div>
 																		<div class="col">
 																			<form method="POST" action="/home/member/{{$member->id_anggota}}">
 																				{{ method_field('DELETE') }}
 																				{{ csrf_field() }}
 
-																				<button onclick="return confirm('Hapus buku?')" type="submit" class="btn btn-sm btn-outline-danger">Hapus</button>
+																				<button onclick="return confirm('Hapus buku?')" type="submit" class="btn btn-sm btn-outline-danger" title="Hapus"> <i class="fas fa-trash"></i> </button>
 																			</form>
 																		</div>
 																	</div>

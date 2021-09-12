@@ -32,11 +32,15 @@ class HomeController extends Controller
 			$bookcount = DB::table('book')->count();
 			$membercount = DB::table('member')->count();
 			$borrowingcount = DB::table('borrowing')->count();
+			$returncount = DB::table('borrowing')
+												->where('borrowing.status_peminjaman', '=', 0)
+												->count();
 
 			return view('admin.dashboard')->with([
 				'bookcount' => $bookcount,
 				'membercount' => $membercount,
-				'borrowingcount' => $borrowingcount
+				'borrowingcount' => $borrowingcount,
+				'returncount' => $returncount
 			]);
 		}
 }

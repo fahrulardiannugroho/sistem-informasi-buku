@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Member;
-use Illuminate\Http\Request;
-use Barryvdh\DomPDF\Facade as PDF;
 use Carbon\Carbon;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Barryvdh\DomPDF\Facade as PDF;
 
-class MemberController extends Controller
+class ReturnController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +16,19 @@ class MemberController extends Controller
      */
     public function index()
     {
-			$members = Member::all();
-      return view('admin.members.index')->with("members", $members);
+			$returns = DB::table('borrowing')
+										->join('member', 'borrowing.id_anggota', '=', 'member.id_anggota')
+										->join('book', 'borrowing.id_buku', '=', 'book.id_buku')
+										->select('borrowing.*', 'member.*', 'book.*')
+										->where('borrowing.status_peminjaman', '=', 0)
+										->get();
+
+			$dateNow = Carbon::now()->toDate();
+
+			return view('admin.returns.index')->with([
+			"returns" => $returns,
+			"dateNow" => $dateNow
+			]);
     }
 
     /**
@@ -27,7 +38,7 @@ class MemberController extends Controller
      */
     public function create()
     {
-			return view('admin.members.add');
+        //
     }
 
     /**
@@ -38,14 +49,7 @@ class MemberController extends Controller
      */
     public function store(Request $request)
     {
-			$member = new Member();
-			$member->nama = $request->nama;
-			$member->status_anggota = $request->status_anggota;
-			$member->alamat = $request->alamat;
-			$member->nomor_hp = $request->nomor_hp;
-			$member->save();
-		
-			return redirect('/home/members')->with('success', 'data berhasil disimpan');
+        //
     }
 
     /**
@@ -56,8 +60,14 @@ class MemberController extends Controller
      */
     public function show($id)
     {
-			$member = Member::find($id);
-			return view("admin.members.show")->with("member", $member);
+			$return = DB::table('borrowing')
+										->join('member', 'borrowing.id_anggota', '=', 'member.id_anggota')
+										->join('book', 'borrowing.id_buku', '=', 'book.id_buku')
+										->select('borrowing.*', 'member.*', 'book.*')
+										->where('borrowing.id_peminjaman', '=', $id)
+										->get()->first();
+
+										return view("admin.returns.show")->with("return", $return);
     }
 
     /**
@@ -68,8 +78,7 @@ class MemberController extends Controller
      */
     public function edit($id)
     {
-			$member = Member::find($id);
-			return view("admin.members.edit")->with("member", $member);
+        //
     }
 
     /**
@@ -81,14 +90,7 @@ class MemberController extends Controller
      */
     public function update(Request $request, $id)
     {
-			$member = Member::find($id);
-			$member->nama = $request->nama;
-			$member->status_anggota = $request->status_anggota;
-			$member->alamat = $request->alamat;
-			$member->nomor_hp = $request->nomor_hp;
-			$member->save();
-		
-			return redirect('/home/members')->with('success', 'data berhasil diupdate');
+        //
     }
 
     /**
@@ -99,21 +101,23 @@ class MemberController extends Controller
      */
     public function destroy($id)
     {
-			$member = Member::find($id);
-  		$member->delete();
-
-      return redirect('home/members')->with('success', 'data berhasil dihapus');
+        //
     }
 
-		public function print_members()
+		public function print_returns()
 		{
-			$members = Member::all();
+			$returns = DB::table('borrowing')
+										->join('member', 'borrowing.id_anggota', '=', 'member.id_anggota')
+										->join('book', 'borrowing.id_buku', '=', 'book.id_buku')
+										->select('borrowing.*', 'member.*', 'book.*')
+										->where('borrowing.status_peminjaman', '=', 0)
+										->get();
     	$dateNow = Carbon::now()->format('d, M Y');
  
-    	$pdf = PDF::loadView('admin.members.members_pdf',[
-				'members' => $members,
+    	$pdf = PDF::loadView('admin.returns.returns_pdf',[
+				'returns' => $returns,
 				'dateNow' => $dateNow
 			]);
-    	return $pdf->stream('laporan-daftar-anggota.pdf');
+    	return $pdf->stream('laporan-daftar-peminjaman.pdf');
 		}
 }

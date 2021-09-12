@@ -2,14 +2,30 @@
 
 @section('content')
 <div class="container">
+		@if(count($errors) > 0)
+			<div class="alert alert-danger mt-3">
+				@foreach ($errors->all() as $error)
+				{{ $error }} <br/>
+				@endforeach
+			</div>
+		@endif
+
     <div class="row justify-content-center">
         <div class="col">
             <div class="card mt-3">
-								<div class="card-header">Tambah Buku</div>
+								<div class="card-header">Edit Buku</div>
                 <div class="card-body">
-									<form method="post" action="{{ url("/home/book", $book->id_buku ) }}">
+									<form method="post" action="{{ url("/home/book", $book->id_buku ) }}" enctype="multipart/form-data">
 										{{ method_field('PUT') }}
 										{{ csrf_field() }}
+										<div class="form-group row">
+											<label for="file" class="col-sm-2 col-form-label">Gambar Buku (Optional)</label>
+											<div class="col-sm-10">
+												<input name="file" type="file" id="file">
+												<p>{{ $book->gambar_buku }}</p>
+											</div>
+										</div>
+
 										<div class="form-group row">
 											<label for="judulBuku" class="col-sm-2 col-form-label">Judul Buku</label>
 											<div class="col-sm-10">

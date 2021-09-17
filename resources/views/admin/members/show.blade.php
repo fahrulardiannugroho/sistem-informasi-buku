@@ -7,6 +7,7 @@
             <div class="card mt-3">
 								<div class="card-header">Detail Anggota</div>
                 <div class="card-body">
+									<p>ID Anggota <br><b>#{{ $member->id_anggota }}</b></p>
 									<p>Nama <br><b>{{ $member->nama }}</b></p>
 									<p>Status Anggota<br><b>{{ $member->status_anggota }}</b></p>
 									<p>Alamat <br><b>{{ $member->alamat }}</b></p>

@@ -2,7 +2,7 @@
 
 @section('content')
 	@section('content_header')
-	<h1>Dashboard</h1>
+	<h1 class="ml-2">Dashboard</h1>
 	@endsection
 
 	<div class="container">

@@ -2,7 +2,7 @@
 
 @section('content')
 	@section('content_header')
-	<h1>Transaksi Peminjaman</h1>
+	<h1 class="ml-2">Transaksi Peminjaman</h1>
 	@endsection
 
 	<div class="container">
@@ -48,7 +48,7 @@
 																	@endif
 
 																</td>
-																<td>
+																<td style="width: 15%;">
 																	<div class="row">
 																		<div class="col-3"><a class="btn btn-sm btn-outline-primary" href="{{ url("/home/borrowing/show", $borrowing->id_peminjaman) }}" title="Detail Peminjaman"><i class="fas fa-eye"></i></a></div>
 

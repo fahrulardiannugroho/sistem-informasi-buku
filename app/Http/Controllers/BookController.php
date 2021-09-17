@@ -138,9 +138,11 @@ class BookController extends Controller
 
 				// menghapus gambar lama
 				$gambar_buku = $book->gambar_buku;
-				unlink(public_path('data_file/'.$gambar_buku));
+				if ($gambar_buku != 'default.png') {
+					unlink(public_path('data_file/'.$gambar_buku));
+				}
 	
-				// mengupload gambar baru
+				// mengupload gambar
 				$tujuan_upload = 'data_file';
 				$file->move($tujuan_upload,$nama_file);
 			} else {

@@ -84,7 +84,8 @@ class BorrowingController extends Controller
 			$borrowing = DB::table('borrowing')
 												->join('member', 'borrowing.id_anggota', '=', 'member.id_anggota')
 												->join('book', 'borrowing.id_buku', '=', 'book.id_buku')
-												->select('borrowing.*', 'member.*', 'book.*')
+												->join('category', 'book.id_kategori', '=', 'category.id_kategori')
+												->select('borrowing.*', 'member.*', 'book.*', 'category.*')
 												->where('borrowing.id_peminjaman', '=', $id)
 												->get()->first();
 

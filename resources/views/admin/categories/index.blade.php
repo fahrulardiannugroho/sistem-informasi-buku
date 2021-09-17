@@ -2,7 +2,7 @@
 
 @section('content')
 	@section('content_header')
-	<h1>Kelola Kategori Buku</h1>
+	<h1 class="ml-2">Kelola Kategori Buku</h1>
 	@endsection
 
 	<div class="container">

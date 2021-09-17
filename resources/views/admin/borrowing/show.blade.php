@@ -10,7 +10,7 @@
 									<h2>Info peminjaman</h2>
 									<div class="row">
 										<div class="col-4"><p>ID Transaksi</p></div>
-										<div class="col"><p>{{ $borrowing->id_peminjaman }}</></div>
+										<div class="col"><p>#{{ $borrowing->id_peminjaman }}</></div>
 									</div>
 									<div class="row">
 										<div class="col-4"><p>Tanggal Pinjam</p></div>
@@ -26,7 +26,7 @@
 									<h2>Info Peminjam</h2>
 									<div class="row">
 										<div class="col-4"><p>ID Peminjam</p></div>
-										<div class="col"><p>{{ $borrowing->id_anggota }}</></div>
+										<div class="col"><p>#{{ $borrowing->id_anggota }}</></div>
 									</div>
 									<div class="row">
 										<div class="col-4"><p>Nama Anggota</p></div>
@@ -50,7 +50,7 @@
 									<h2>Info Buku</h2>
 									<div class="row">
 										<div class="col-4"><p>ID Buku</p></div>
-										<div class="col"><p>{{ $borrowing->id_buku }}</></div>
+										<div class="col"><p>#{{ $borrowing->id_buku }}</></div>
 									</div>
 									<div class="row">
 										<div class="col-4"><p>Judul Buku</p></div>

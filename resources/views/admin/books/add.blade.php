@@ -61,8 +61,8 @@
 										<div class="form-group row">
 											<label for="id_kategori" class="col-sm-2 col-form-label">Kategori</label>
 											<div class="col-sm-10">
-												<select name="id_kategori" class="form-control" id="id_kategori">
-													<option selected disabled>Pilih Kategori</option>
+												<select name="id_kategori" style="width: 100%" id="id_kategori">
+													<option></option>
 													@foreach ($categories as $category)
 														<option value="{{ $category->id_kategori }}"> {{ $category->kategori }}</option>
 													@endforeach
@@ -120,6 +120,12 @@
             of: $(this)
         });
    		});
+
+			$('#id_kategori').select2({
+				width: 'resolve',
+				theme: "classic",
+				placeholder: 'Pilih Kategori'
+			});
 		});
 	</script>
 @endsection

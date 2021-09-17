@@ -2,7 +2,7 @@
 
 @section('content')
 	@section('content_header')
-	<h1>Transaksi Pengembalian</h1>
+	<h1 class="ml-2">Transaksi Pengembalian</h1>
 	@endsection
 
 	<div class="container">

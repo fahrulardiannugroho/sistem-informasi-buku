@@ -13,6 +13,10 @@
 										</div>
 										<div class="col">
 											<div class="row">
+												<div class="col-4"><p>ID Buku</p></div>
+												<div class="col"><b>#{{ $book->id_buku }}</b></div>
+											</div>
+											<div class="row">
 												<div class="col-4"><p>Judul Buku</p></div>
 												<div class="col"><b>{{ $book->judul_buku }}</b></div>
 											</div>
@@ -23,10 +27,6 @@
 											<div class="row">
 												<div class="col-4"><p>Penerbit</p></div>
 												<div class="col"><b>{{ $book->penerbit }}</b></div>
-											</div>
-											<div class="row">
-												<div class="col-4"><p>Stok Buku</p></div>
-												<div class="col"><b>{{ $book->stok_buku }}</b></div>
 											</div>
 											<div class="row">
 												<div class="col-4"><p>Kategori</p></div>
@@ -51,6 +51,10 @@
 											<div class="row">
 												<div class="col-4"><p>ISBN</p></div>
 												<div class="col"><b>{{ $book->isbn }}</b></div>
+											</div>
+											<div class="row">
+												<div class="col-4"><p>Stok Buku</p></div>
+												<div class="col"><span class="badge badge-primary"><b>{{ $book->stok_buku }}</b></span></div>
 											</div>
 										</div>
 									</div>

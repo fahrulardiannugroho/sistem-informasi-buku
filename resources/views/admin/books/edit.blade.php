@@ -19,6 +19,13 @@
 										{{ method_field('PUT') }}
 										{{ csrf_field() }}
 										<div class="form-group row">
+											<label for="id_buku" class="col-sm-2 col-form-label">ID Buku</label>
+											<div class="col-sm-10">
+												<input name="id_buku" type="text" value="{{ $book->id_buku }}" class="form-control" id="id_buku" disabled>
+											</div>
+										</div>
+
+										<div class="form-group row">
 											<label for="file" class="col-sm-2 col-form-label">Gambar Buku <small>(Optional)</small></label>
 											<div class="col-sm-10">
 												<input name="file" type="file" id="file">

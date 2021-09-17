@@ -42,7 +42,9 @@ class BorrowingController extends Controller
     public function create()
     {
 			$members = Member::all();
-			$books = Book::all();
+			$books = DB::table('book')
+								->where('book.stok_buku', '>', 0)
+								->get();
 			$dateNow = Carbon::now()->toDateString();
 			$dateNextToSeventDay = Carbon::now()->addDay(7)->toDateString();
 			return view('admin.borrowing.add')->with([

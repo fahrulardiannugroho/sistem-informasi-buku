@@ -50,7 +50,7 @@
 																</td>
 																<td>
 																	<div class="row">
-																		<div class="col-3"><a class="btn btn-sm btn-outline-primary" href="{{ url("/home/borrowing/show", $borrowing->id_peminjaman) }}" title="Detail Peminjaman"><i class="fas fa-info-circle"></i></a></div>
+																		<div class="col-3"><a class="btn btn-sm btn-outline-primary" href="{{ url("/home/borrowing/show", $borrowing->id_peminjaman) }}" title="Detail Peminjaman"><i class="fas fa-eye"></i></a></div>
 
 																		@if ($borrowing->status_peminjaman == 1)
 																		<div class="col-3"><a class="btn btn-sm btn-outline-dark" href="{{ url("/home/borrowing/edit", $borrowing->id_peminjaman) }}" title="Perpanjang"> <i class="fas fa-stopwatch"></i> </a></div>

@@ -13,16 +13,18 @@ use Illuminate\Support\Facades\Auth;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Auth::routes([
+	'register'=> false,
+	'reset'=>false
+]);
 
 Route::get('/', function () {
     return view('user.public');
 });
 
-
-Auth::routes();
-
 Route::group(['middleware' => ['auth']], function () {
 	//dashboard
+	Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('index');
 	Route::get('/home/dashboard', [App\Http\Controllers\HomeController::class, 'dashboard'])->name('dashboard');
 	
 	//books
@@ -59,7 +61,10 @@ Route::group(['middleware' => ['auth']], function () {
 	Route::get('/home/returns', [App\Http\Controllers\ReturnController::class, 'index'])->name('index');
 	Route::get('/home/return/show/{id}', [App\Http\Controllers\ReturnController::class, 'show'])->name('show');
 	Route::get('/home/returns/print_returns', [App\Http\Controllers\ReturnController::class, 'print_returns'])->name('print_returns');
-});
-Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+	//categories
+	Route::get('/home/categories', [App\Http\Controllers\CategoriesController::class, 'index'])->name('index');
+	Route::get('/home/categories/add', [App\Http\Controllers\CategoriesController::class, 'create'])->name('create');
+	Route::post('/home/categories', [App\Http\Controllers\CategoriesController::class, 'store'])->name('store');
+	Route::delete('/home/categories/{id}', [App\Http\Controllers\CategoriesController::class, 'destroy'])->name('destroy');
+});

@@ -36,16 +36,16 @@
 																<td> {{ $member->nomor_hp }}</td>
 																<td>
 																	<div class="row">
-																		<div class="col"><a class="btn btn-sm btn-outline-primary" href="{{ url("/home/member/show", $member->id_anggota) }}" title="Detail"> <i class="fas fa-info-circle"></i> </a></div>
-																		<div class="col"><a class="btn btn-sm btn-outline-dark" href="{{ url("/home/member/edit", $member->id_anggota) }}" title="Edit"> <i class="fas fa-edit"></i> </a></div>
-																		<div class="col">
+																		<div class="col-6"><a class="btn btn-sm btn-outline-primary" href="{{ url("/home/member/show", $member->id_anggota) }}" title="Detail"> <i class="fas fa-eye"></i> </a></div>
+																		<div class="col-6"><a class="btn btn-sm btn-outline-dark" href="{{ url("/home/member/edit", $member->id_anggota) }}" title="Edit"> <i class="fas fa-edit"></i> </a></div>
+																		<!-- <div class="col">
 																			<form method="POST" action="/home/member/{{$member->id_anggota}}">
 																				{{ method_field('DELETE') }}
 																				{{ csrf_field() }}
 
 																				<button onclick="return confirm('Hapus buku?')" type="submit" class="btn btn-sm btn-outline-danger" title="Hapus"> <i class="fas fa-trash"></i> </button>
 																			</form>
-																		</div>
+																		</div> -->
 																	</div>
 																</td>
 														</tr>

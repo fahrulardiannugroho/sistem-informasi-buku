@@ -32,24 +32,30 @@
 													@foreach($books as $index => $book)
 														<tr>
 																<td> {{ $index + 1 }}</td>
-																<td> <img width="50px" src="{{ url('/data_file/'.$book->gambar_buku) }}" alt=""> </a> </td>
+																<td> <img width="30px" src="{{ url('/data_file/'.$book->gambar_buku) }}" alt=""> </a> </td>
 																<td> {{ $book->judul_buku }} </a> </td>
 																<td> {{ $book->penulis }} </td>
 																<td> {{ $book->penerbit }} </td>
 																<td> {{ $book->stok_buku }}</td>
-																<td> {{ $book->kategori }}</td>
+																<td>
+																	@if ($book->kategori)
+																		{{ $book->kategori }}
+																	@else
+																		-
+																	@endif
+																</td>
 																<td>
 																	<div class="row">
-																		<div class="col-3"><a class="btn btn-sm btn-outline-primary" href="{{ url("/home/book/show", $book->id_buku) }}" title="Detail"> <i class="fas fa-info-circle"></i> </a></div>
-																		<div class="col-3"><a class="btn btn-sm btn-outline-dark" href="{{ url("/home/book/edit", $book->id_buku) }}" title="Edit"> <i class="fas fa-edit"></i> </a></div>
-																		<div class="col-3">
+																		<div class="col-6"><a class="btn btn-sm btn-outline-primary" href="{{ url("/home/book/show", $book->id_buku) }}" title="Detail"> <i class="fas fa-eye"></i> </a></div>
+																		<div class="col-6"><a class="btn btn-sm btn-outline-dark" href="{{ url("/home/book/edit", $book->id_buku) }}" title="Edit"> <i class="fas fa-edit"></i> </a></div>
+																		<!-- <div class="col-3">
 																			<form method="POST" action="/home/book/{{$book->id_buku}}">
 																				{{ method_field('DELETE') }}
 																				{{ csrf_field() }}
 
 																				<button onclick="return confirm('Hapus buku?')" type="submit" class="btn btn-sm btn-outline-danger" title="Hapus"><i class="fas fa-trash"></i></button>
 																			</form>
-																		</div>
+																		</div> -->
 																	</div>
 																</td>
 														</tr>

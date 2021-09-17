@@ -85,8 +85,8 @@ return [
 
     'layout_topnav' => null,
     'layout_boxed' => null,
-    'layout_fixed_sidebar' => null,
-    'layout_fixed_navbar' => null,
+    'layout_fixed_sidebar' => true,
+    'layout_fixed_navbar' => true,
     'layout_fixed_footer' => null,
     'layout_dark_mode' => null,
 
@@ -208,7 +208,7 @@ return [
     |
     */
 
-    'enabled_laravel_mix' => false,
+    'enabled_laravel_mix' => true,
     'laravel_mix_css_path' => 'css/app.css',
     'laravel_mix_js_path' => 'js/app.js',
 
@@ -232,7 +232,7 @@ return [
         // ],
 
         // Sidebar items:
-        // ['header' => 'account_settings'],
+        // ['header' => 'settings'],
 				[
 					'text' => 'Dashboard',
 					'url'  => '/home/dashboard',
@@ -240,8 +240,17 @@ return [
 				],
         [
             'text' => 'Kelola Buku',
-            'url'  => '/home/books',
             'icon' => 'fas fa-fw fa-book',
+						'submenu' => [
+								[
+										'text' => 'Kategori Buku',
+										'url'  => '/home/categories',
+								],
+								[
+										'text' => 'Buku',
+										'url'  => '/home/books',
+								],
+						],
         ],
         [
             'text' => 'Kelola Anggota',

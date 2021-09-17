@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
+    <div class="row justify-content-center align-items-center">
         <div class="col-md-5">
             <div class="card">
 								<div class="card-header">Login Admin</div>
@@ -34,7 +34,7 @@
 														@enderror
                         </div>
 
-                        <div class="form-group">
+                        <!-- <div class="form-group">
 														<div class="form-check">
 																<input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
@@ -42,7 +42,7 @@
 																		{{ __('Remember Me') }}
 																</label>
 														</div>
-                        </div>
+                        </div> -->
 
                         <div class="form-group mb-0">
 														<button type="submit" class="btn btn-primary">

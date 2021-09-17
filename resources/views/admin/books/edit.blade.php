@@ -19,10 +19,10 @@
 										{{ method_field('PUT') }}
 										{{ csrf_field() }}
 										<div class="form-group row">
-											<label for="file" class="col-sm-2 col-form-label">Gambar Buku (Optional)</label>
+											<label for="file" class="col-sm-2 col-form-label">Gambar Buku <small>(Optional)</small></label>
 											<div class="col-sm-10">
 												<input name="file" type="file" id="file">
-												<p>{{ $book->gambar_buku }}</p>
+												<p>Gambar saat ini: {{ $book->gambar_buku }}</p>
 											</div>
 										</div>
 
@@ -48,22 +48,46 @@
 										</div>
 
 										<div class="form-group row">
-											<label for="stokBuku" class="col-sm-2 col-form-label">Stok Buku</label>
+											<label for="tahun_terbit" class="col-sm-2 col-form-label">Tahun Terbit</label>
 											<div class="col-sm-10">
-												<input name="stok_buku" type="number" value="{{ $book->stok_buku }}" min="0" class="form-control" id="stokBuku">
+												<input name="tahun_terbit" type="text" value="{{ $book->tahun_terbit }}" class="form-control" id="tahun_terbit">
 											</div>
 										</div>
 
 										<div class="form-group row">
-											<label for="kategori" class="col-sm-2 col-form-label">Kategori</label>
+											<label for="tanggal_masuk" class="col-sm-2 col-form-label">Tanggal Masuk</label>
 											<div class="col-sm-10">
-												<select name="kategori" class="form-control" id="kategori">
-													<option selected>{{ $book->kategori }}</option>
-													<option>Dongeng</option>
-													<option>Sejarah</option>
-													<option>Biografi</option>
-													<option>Sains</option>
+												<input name="tanggal_masuk" type="text" value="{{ $book->tanggal_masuk }}" class="form-control" id="penerbit">
+											</div>
+										</div>
+
+										<div class="form-group row">
+											<label for="isbn" class="col-sm-2 col-form-label">ISBN</label>
+											<div class="col-sm-10">
+												<input name="isbn" type="text" value="{{ $book->isbn }}" class="form-control" id="penerbit">
+											</div>
+										</div>
+
+										<div class="form-group row">
+											<label for="id_kategori" class="col-sm-2 col-form-label">Kategori</label>
+											<div class="col-sm-10">
+												<select name="id_kategori" class="form-control" id="id_kategori">
+												@if ($book->kategori)
+													<option value="{{ $book->id_kategori }}"> {{ $book->kategori }}</option>
+												@else
+													<option selected disabled>Pilih Kategori</option>
+												@endif
+													@foreach ($category as $kategori)
+														<option value="{{ $kategori->id_kategori }}"> {{ $kategori->kategori }}</option>
+													@endforeach
 												</select>
+											</div>
+										</div>
+
+										<div class="form-group row">
+											<label for="stok_buku" class="col-sm-2 col-form-label">Stok Buku</label>
+											<div class="col-sm-10">
+												<input name="stok_buku" type="number" value="{{ $book->stok_buku }}" min="0" class="form-control" id="stok_buku">
 											</div>
 										</div>
 
@@ -80,4 +104,36 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('scripts')
+	<script>
+		$(document).ready(function(){
+			$('#tahun_terbit').datepicker({
+				format: 'yy',
+        changeYear: true,
+				maxDate: "0Y",
+        minDate: "-100Y",
+        yearRange: "-100:+0",
+        showButtonPanel: true,
+
+				onClose: function(dateText, inst) {
+            var year = $("#ui-datepicker-div .ui-datepicker-year :selected").val();
+            $(this).val($.datepicker.formatDate('yy', new Date(year, 1, 1)));
+        }
+			});
+
+			$("#tahun_terbit").focus(function () {
+        $(".ui-datepicker-calendar").hide();
+				$(".ui-datepicker-prev").hide();
+				$(".ui-datepicker-next").hide();
+				$(".ui-datepicker-month").hide();
+        $("#ui-datepicker-div").position({
+            my: "center top",
+            at: "center bottom",
+            of: $(this)
+        });
+   		});
+		});
+	</script>
 @endsection

@@ -27,7 +27,7 @@
 												<select required class="form-control" id="idAnggota" name="id_buku">
 													<option selected disabled>Pilih Buku</option>
 													@foreach ($books as $book)
-															<option value="{{ $book->id_buku }}">{{$book->id_buku}} - {{ $book->judul_buku }}</option>
+														<option value="{{ $book->id_buku }}">{{$book->id_buku}} - {{ $book->judul_buku }}</option>
 													@endforeach
 												</select>
 											</div>

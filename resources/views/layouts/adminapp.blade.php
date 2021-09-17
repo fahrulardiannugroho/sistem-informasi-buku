@@ -2,24 +2,21 @@
 
 @yield('title')
 
-
-@section('content')
-		@yield('content_header')
-@stop
+<div id="app">
+	@section('content')
+			@yield('content_header')
+	@stop
+</div>
 
 @section('css')
-    <!-- <link rel="stylesheet" href="/css/admin_custom.css"> -->
-		<link href=" {{ mix('css/app.css') }}" rel="stylesheet">
-		<link rel="stylesheet" href="https://cdn.datatables.net/1.11.0/css/dataTables.bootstrap4.min.css">
+		<!-- <link href=" {{ asset('css/app.css') }}" rel="stylesheet"> -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/css/bootstrap-datetimepicker.min.css">
 		
 @stop
 
 @section('js')
-	<script src = "http://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js" defer ></script>
-	<!-- <script src="{{ mix('js/app.js') }}"></script> -->
-
-	<!-- DataTables -->
-	<script src = "http://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js" defer ></script>
+	<!-- <script type="text/javascript" src="{{ asset('js/app.js') }}"></script> -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/js/bootstrap-datetimepicker.min.js"></script>
 
 	@yield('scripts')
 @stop

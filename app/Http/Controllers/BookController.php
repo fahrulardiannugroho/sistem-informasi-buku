@@ -3,9 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Book;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade as PDF;
 use Carbon\Carbon;
+use Facade\FlareClient\Stacktrace\File;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class BookController extends Controller
 {
@@ -16,7 +20,11 @@ class BookController extends Controller
      */
     public function index()
     {
-			$books = Book::all();
+			$books = DB::table('book')
+									->leftJoin('category', 'book.id_kategori', '=', 'category.id_kategori')
+									->select('book.*', 'category.*')
+									->get();
+
       return view('admin.books.index')->with("books", $books);
     }
 
@@ -27,7 +35,10 @@ class BookController extends Controller
      */
     public function create()
     {
-        return view('admin.books.add');
+				$categories = Category::all();
+        return view('admin.books.add', [
+					'categories' => $categories
+				]);
     }
 
     /**
@@ -58,8 +69,11 @@ class BookController extends Controller
 			$book->penulis = $request->penulis;
 			$book->penerbit = $request->penerbit;
 			$book->stok_buku = $request->stok_buku;
-			$book->kategori = $request->kategori;
+			$book->id_kategori = $request->id_kategori;
 			$book->gambar_buku = $nama_file;
+			$book->tahun_terbit = $request->tahun_terbit;
+			$book->tanggal_masuk = $request->tanggal_masuk;
+			$book->isbn = $request->isbn;
 			$book->save();
 		
 			return redirect('/home/books')->with('success', 'data berhasil disimpan');
@@ -73,8 +87,13 @@ class BookController extends Controller
      */
     public function show($id)
     {
-			$book = Book::find($id);
-			return view("admin.books.show")->with("book", $book);
+			$book = DB::table('book')
+									->leftJoin('category', 'book.id_kategori', '=', 'category.id_kategori')
+									->select('book.*', 'category.*')
+									->where('book.id_buku', '=', $id)
+									->get()->first();
+						
+			return view("admin.books.show")->with(["book" => $book]);
     }
 
     /**
@@ -85,8 +104,17 @@ class BookController extends Controller
      */
     public function edit($id)
     {
-			$book = Book::find($id);
-			return view("admin.books.edit")->with("book", $book);
+			$book = DB::table('book')
+									->leftJoin('category', 'book.id_kategori', '=', 'category.id_kategori')
+									->select('book.*', 'category.*')
+									->where('book.id_buku', '=', $id)
+									->get()->first();
+			$category = Category::all();
+
+			return view("admin.books.edit", [
+				"book" => $book,
+				"category" => $category
+			]);
     }
 
     /**
@@ -98,21 +126,36 @@ class BookController extends Controller
      */
     public function update(Request $request, $id)
     {
-			
-			$file = $request->file('file');
-			$nama_file = time()."_".$file->getClientOriginalName();
+			$book = Book::where('id_buku', $id)->first();
 
-			// folder tempat  file diupload
-			$tujuan_upload = 'data_file';
-			$file->move($tujuan_upload,$nama_file);
+			$this->validate($request, [
+				'file' => 'image|mimes:jpeg,png,jpg|max:1024'
+			]);
 			
-			$book = Book::find($id);
+			if ($request->file('file')) {
+				$file = $request->file('file');
+				$nama_file = time()."_".$file->getClientOriginalName();
+
+				// menghapus gambar lama
+				$gambar_buku = $book->gambar_buku;
+				unlink(public_path('data_file/'.$gambar_buku));
+	
+				// mengupload gambar baru
+				$tujuan_upload = 'data_file';
+				$file->move($tujuan_upload,$nama_file);
+			} else {
+				$nama_file = 'default.png';
+			}
+			
 			$book->judul_buku = $request->judul_buku;
 			$book->penulis = $request->penulis;
 			$book->penerbit = $request->penerbit;
 			$book->stok_buku = $request->stok_buku;
-			$book->kategori = $request->kategori;
+			$book->id_kategori = $request->id_kategori;
 			$book->gambar_buku = $nama_file;
+			$book->tahun_terbit = $request->tahun_terbit;
+			$book->tanggal_masuk = $request->tanggal_masuk;
+			$book->isbn = $request->isbn;
 			$book->update();
 		
 			return redirect('/home/books')->with('success', 'data berhasil diupdate');
@@ -126,7 +169,12 @@ class BookController extends Controller
      */
     public function destroy($id)
     {
-			$book = Book::find($id);
+			$book = Book::where('id_buku', $id)->first();
+			$gambar_buku = $book->gambar_buku;
+			unlink(public_path('data_file/'.$gambar_buku));
+			
+
+			// hapus data
   		$book->delete();
 
       return redirect('home/books')->with('success', 'data berhasil dihapus');
@@ -134,7 +182,10 @@ class BookController extends Controller
 
 		public function print_books()
 		{
-			$books = Book::all();
+			$books = DB::table('book')
+									->leftJoin('category', 'book.id_kategori', '=', 'category.id_kategori')
+									->select('book.*', 'category.*')
+									->get();
 			$dateNow = Carbon::now()->format('d, M Y');
  
     	$pdf = PDF::loadView('admin.books.books_pdf',[

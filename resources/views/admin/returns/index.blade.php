@@ -36,7 +36,7 @@
 																<td> {{ $return->tanggal_dikembalikan }}</td>
 																<td> {{ $return->durasi_peminjaman }} Hari</td>
 																<td>
-																	<div class="col-3"><a class="btn btn-sm btn-outline-primary" href="{{ url("/home/return/show", $return->id_peminjaman) }}" title="Detail Peminjaman"><i class="fas fa-info-circle"></i></a></div>
+																	<div class="col-3"><a class="btn btn-sm btn-outline-primary" href="{{ url("/home/return/show", $return->id_peminjaman) }}" title="Detail Peminjaman"><i class="fas fa-eye"></i></a></div>
 																</td>
 														</tr>
 													@endforeach

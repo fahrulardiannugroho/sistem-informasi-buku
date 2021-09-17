@@ -41,8 +41,8 @@
 					<th scope="col">Judul Buku</th>
 					<th scope="col">Penulis</th>
 					<th scope="col">Penerbit</th>
-					<th scope="col">Stok</th>
 					<th scope="col">Kategori</th>
+					<th scope="col">Stok</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -52,8 +52,14 @@
 							<td> {{ $book->judul_buku }} </a> </td>
 							<td> {{ $book->penulis }} </td>
 							<td> {{ $book->penerbit }} </td>
+							<td>
+								@if ($book->kategori)
+									{{ $book->kategori }}
+								@else
+									-
+								@endif
+							</td>
 							<td> {{ $book->stok_buku }}</td>
-							<td> {{ $book->kategori }}</td>
 					</tr>
 				@endforeach
 			</tbody>

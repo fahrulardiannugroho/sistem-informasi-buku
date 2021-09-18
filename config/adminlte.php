@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'title' => 'SisfobukuApp',
+    'title' => 'TBM Rumah Inspirasi Bungkutoko',
     'title_prefix' => '',
     'title_postfix' => '',
 
@@ -45,9 +45,9 @@ return [
     |
     */
 
-    'logo' => '<b>Sisfobuku</b>app',
+    'logo' => '<b>TBM RIB</b> <span class="badge badge-info">Admin</span>',
     'logo_img' => 'vendor/adminlte/dist/img/sisfobuku.png',
-    'logo_img_class' => 'brand-image img-circle elevation-3',
+    'logo_img_class' => 'brand-image elevation-3',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
     'logo_img_alt' => 'AdminLTE',
@@ -69,7 +69,7 @@ return [
     'usermenu_header_class' => 'bg-primary',
     'usermenu_image' => true,
     'usermenu_desc' => true,
-    'usermenu_profile_url' => false,
+    'usermenu_profile_url' => true,
 
     /*
     |--------------------------------------------------------------------------
@@ -232,7 +232,7 @@ return [
         // ],
 
         // Sidebar items:
-        // ['header' => 'settings'],
+        ['header' => 'MENU UTAMA'],
 				[
 					'text' => 'Dashboard',
 					'url'  => '/home/dashboard',
@@ -255,7 +255,7 @@ return [
         [
             'text' => 'Kelola Anggota',
             'url'  => '/home/members',
-            'icon' => 'fas fa-fw fa-user',
+            'icon' => 'fas fa-users',
         ],
         [
             'text'    => 'Transaksi',
@@ -271,6 +271,12 @@ return [
                 ],
             ],
         ],
+				['header' => 'PENGATURAN AKUN'],
+				[
+						'text' => 'profile',
+						'url'  => '/home/profile',
+						'icon' => 'fas fa-fw fa-user',
+				],
     ],
 
     /*

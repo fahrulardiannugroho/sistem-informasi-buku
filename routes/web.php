@@ -67,4 +67,10 @@ Route::group(['middleware' => ['auth']], function () {
 	Route::get('/home/categories/add', [App\Http\Controllers\CategoriesController::class, 'create'])->name('create');
 	Route::post('/home/categories', [App\Http\Controllers\CategoriesController::class, 'store'])->name('store');
 	Route::delete('/home/categories/{id}', [App\Http\Controllers\CategoriesController::class, 'destroy'])->name('destroy');
+
+	//profile
+	Route::get('/home/profile', [App\Http\Controllers\ProfileController::class, 'index'])->name('profile');
+	Route::get('/home/profile/edit/{id}', [App\Http\Controllers\ProfileController::class, 'edit'])->name('edit');
+	Route::patch('/home/profile', [App\Http\Controllers\ProfileController::class, 'update'])
+        ->name('admin.profile.update');
 });

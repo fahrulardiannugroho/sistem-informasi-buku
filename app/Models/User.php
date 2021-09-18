@@ -51,4 +51,9 @@ class User extends Authenticatable
 		{
 				return 'Selamat datang Admin';
 		}
+
+		public function adminlte_profile_url()
+		{
+				return 'home/profile';
+		}
 }

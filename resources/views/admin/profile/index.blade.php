@@ -17,12 +17,12 @@
 											<div class="col"><p> <b>{{ $user->name }}</b> </p></div>
 										</div>
 
-										<div class="row">
+										<div class="row mb-5">
 											<div class="col-3"><p>Email</p></div>
 											<div class="col"><p> <b>{{ $user->email }}</b> </p></div>
 										</div>
 
-										<a href="{{ url("/home/profile/edit", $user->id) }}" class="btn btn-sm btn-primary"><i class="fas fa-key"></i> Ubah Password</a>
+										<a href="{{ url("/home/profile/edit", $user->id) }}" class="btn btn-sm btn-primary">Ubah Password</a>
 									</div>
 							</div>
 					</div>

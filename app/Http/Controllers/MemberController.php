@@ -108,7 +108,7 @@ class MemberController extends Controller
 		public function print_members()
 		{
 			$members = Member::all();
-    	$dateNow = Carbon::now()->format('d, M Y');
+    	$dateNow = Carbon::now()->format('d M Y');
  
     	$pdf = PDF::loadView('admin.members.members_pdf',[
 				'members' => $members,

@@ -113,7 +113,7 @@ class ReturnController extends Controller
 										->select('borrowing.*', 'member.*', 'book.*')
 										->where('borrowing.status_peminjaman', '=', 0)
 										->get();
-    	$dateNow = Carbon::now()->format('d, M Y');
+    	$dateNow = Carbon::now()->format('d M Y');
  
     	$pdf = PDF::loadView('admin.returns.returns_pdf',[
 				'returns' => $returns,

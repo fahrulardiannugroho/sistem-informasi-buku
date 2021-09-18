@@ -188,7 +188,7 @@ class BookController extends Controller
 									->leftJoin('category', 'book.id_kategori', '=', 'category.id_kategori')
 									->select('book.*', 'category.*')
 									->get();
-			$dateNow = Carbon::now()->format('d, M Y');
+			$dateNow = Carbon::now()->format('d M Y');
  
     	$pdf = PDF::loadView('admin.books.books_pdf',[
 				'books' => $books,

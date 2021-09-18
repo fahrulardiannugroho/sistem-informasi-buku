@@ -174,7 +174,7 @@ class BorrowingController extends Controller
 												->join('book', 'borrowing.id_buku', '=', 'book.id_buku')
 												->select('borrowing.*', 'member.*', 'book.*')
 												->get();
-    	$dateNow = Carbon::now()->format('d, M Y');
+    	$dateNow = Carbon::now()->format('d M Y');
  
     	$pdf = PDF::loadView('admin.borrowing.borrowings_pdf',[
 				'borrowings' => $borrowings,

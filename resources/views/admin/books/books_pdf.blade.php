@@ -24,14 +24,14 @@
 		
 		#bookTablePrint, th, td {
 				border: 1px solid #999;
-				padding: 4px 4px;
+				padding: 2 4px;
 		}
 
 	</style>
 </head>
 <body>
 
-	<h3 class="heading">DAFTAR BUKU <br>SISTEM INFORMASI PEMINJAMAN BUKU</h3>
+	<h3 class="heading">DAFTAR BUKU <br>TBM RUMAH INSPIRASI BUNGKUTOKO</h3>
 	
 	<p class="date">Tanggal {{ $dateNow }} </p>
 	<table id="bookTablePrint">

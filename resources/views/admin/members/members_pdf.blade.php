@@ -24,14 +24,14 @@
 		
 		#memberTablePrint, th, td {
 				border: 1px solid #999;
-				padding: 4px 4px;
+				padding: 2px 4px;
 		}
 
 	</style>
 </head>
 <body>
 
-	<h3 class="heading">DAFTAR ANGGOTA <br>SISTEM INFORMASI PEMINJAMAN BUKU</h3>
+	<h3 class="heading">DAFTAR ANGGOTA <br>TBM RUMAH INSPIRASI BUNGKUTOKO</h3>
 	
 	<p class="date">Tanggal {{ $dateNow }} </p>
 	<table id="memberTablePrint">

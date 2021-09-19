@@ -14,12 +14,11 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 Auth::routes([
-	'register'=> false,
+	//ubah register menjadi false untuk menambah admin baru
+	'register'=> true,
 ]);
 
-Route::get('/', function () {
-    return view('user.public');
-});
+Route::get('/', [App\Http\Controllers\PublicController::class, 'index'])->name('index');
 
 Route::group(['middleware' => ['auth']], function () {
 	//dashboard

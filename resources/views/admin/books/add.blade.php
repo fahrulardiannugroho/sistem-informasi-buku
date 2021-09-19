@@ -19,49 +19,49 @@
 										<div class="form-group row">
 											<label for="judulBuku" class="col-sm-2 col-form-label">Judul Buku</label>
 											<div class="col-sm-10">
-												<input name="judul_buku" type="text" class="form-control" id="judulBuku">
+												<input name="judul_buku" type="text" class="form-control" id="judulBuku" required>
 											</div>
 										</div>
 
 										<div class="form-group row">
 											<label for="penulis" class="col-sm-2 col-form-label">Penulis</label>
 											<div class="col-sm-10">
-												<input name="penulis" type="text" class="form-control" id="penulis">
+												<input name="penulis" type="text" class="form-control" id="penulis" required>
 											</div>
 										</div>
 
 										<div class="form-group row">
 											<label for="penerbit" class="col-sm-2 col-form-label">Penerbit</label>
 											<div class="col-sm-10">
-												<input name="penerbit" type="text" class="form-control" id="penerbit">
+												<input name="penerbit" type="text" class="form-control" id="penerbit" required>
 											</div>
 										</div>
 
 										<div class="form-group row">
 											<label for="tahun_terbit" class="col-sm-2 col-form-label">Tahun Terbit</label>
 											<div class="col-sm-10">
-												<input name="tahun_terbit" type="text" class="form-control" id="tahun_terbit">
+												<input name="tahun_terbit" type="text" class="form-control" id="tahun_terbit" required>
 											</div>
 										</div>
 
 										<div class="form-group row">
 											<label for="tanggal_masuk" class="col-sm-2 col-form-label">Tanggal Masuk</label>
 											<div class="col-sm-10">
-												<input name="tanggal_masuk" type="date" class="form-control" id="tanggal_masuk">
+												<input name="tanggal_masuk" type="date" class="form-control" id="tanggal_masuk" required>
 											</div>
 										</div>
 
 										<div class="form-group row">
 											<label for="isbn" class="col-sm-2 col-form-label">ISBN</label>
 											<div class="col-sm-10">
-												<input name="isbn" type="text" class="form-control" id="isbn">
+												<input name="isbn" type="text" class="form-control" id="isbn" required>
 											</div>
 										</div>
 
 										<div class="form-group row">
 											<label for="id_kategori" class="col-sm-2 col-form-label">Kategori</label>
 											<div class="col-sm-10">
-												<select name="id_kategori" style="width: 100%" id="id_kategori">
+												<select name="id_kategori" style="width: 100%" id="id_kategori" required>
 													<option></option>
 													@foreach ($categories as $category)
 														<option value="{{ $category->id_kategori }}"> {{ $category->kategori }}</option>
@@ -73,7 +73,7 @@
 										<div class="form-group row">
 											<label for="stokBuku" class="col-sm-2 col-form-label">Stok</label>
 											<div class="col-sm-10">
-												<input name="stok_buku" type="number" min="0" class="form-control" id="stokBuku">
+												<input name="stok_buku" type="number" min="0" class="form-control" id="stokBuku" required>
 											</div>
 										</div>
 

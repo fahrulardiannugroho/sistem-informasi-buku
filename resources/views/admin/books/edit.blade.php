@@ -36,49 +36,49 @@
 										<div class="form-group row">
 											<label for="judulBuku" class="col-sm-2 col-form-label">Judul Buku</label>
 											<div class="col-sm-10">
-												<input name="judul_buku" type="text" value="{{ $book->judul_buku }}" class="form-control" id="judulBuku">
+												<input name="judul_buku" type="text" value="{{ $book->judul_buku }}" class="form-control" id="judulBuku" required>
 											</div>
 										</div>
 
 										<div class="form-group row">
 											<label for="penulis" class="col-sm-2 col-form-label">Penulis</label>
 											<div class="col-sm-10">
-												<input name="penulis" type="text" value="{{ $book->penulis }}" class="form-control" id="penulis">
+												<input name="penulis" type="text" value="{{ $book->penulis }}" class="form-control" id="penulis" required>
 											</div>
 										</div>
 
 										<div class="form-group row">
 											<label for="penerbit" class="col-sm-2 col-form-label">Penerbit</label>
 											<div class="col-sm-10">
-												<input name="penerbit" type="text" value="{{ $book->penerbit }}" class="form-control" id="penerbit">
+												<input name="penerbit" type="text" value="{{ $book->penerbit }}" class="form-control" id="penerbit" required>
 											</div>
 										</div>
 
 										<div class="form-group row">
 											<label for="tahun_terbit" class="col-sm-2 col-form-label">Tahun Terbit</label>
 											<div class="col-sm-10">
-												<input name="tahun_terbit" type="text" value="{{ $book->tahun_terbit }}" class="form-control" id="tahun_terbit">
+												<input name="tahun_terbit" type="text" value="{{ $book->tahun_terbit }}" class="form-control" id="tahun_terbit" required>
 											</div>
 										</div>
 
 										<div class="form-group row">
 											<label for="tanggal_masuk" class="col-sm-2 col-form-label">Tanggal Masuk</label>
 											<div class="col-sm-10">
-												<input name="tanggal_masuk" type="text" value="{{ $book->tanggal_masuk }}" class="form-control" id="penerbit">
+												<input name="tanggal_masuk" type="text" value="{{ $book->tanggal_masuk }}" class="form-control" id="penerbit" required>
 											</div>
 										</div>
 
 										<div class="form-group row">
 											<label for="isbn" class="col-sm-2 col-form-label">ISBN</label>
 											<div class="col-sm-10">
-												<input name="isbn" type="text" value="{{ $book->isbn }}" class="form-control" id="penerbit">
+												<input name="isbn" type="text" value="{{ $book->isbn }}" class="form-control" id="penerbit" required>
 											</div>
 										</div>
 
 										<div class="form-group row">
 											<label for="id_kategori" class="col-sm-2 col-form-label">Kategori</label>
 											<div class="col-sm-10">
-												<select name="id_kategori" style="width: 100%" id="id_kategori">
+												<select name="id_kategori" style="width: 100%" id="id_kategori" required>
 												@if ($book->kategori)
 													<option value="{{ $book->id_kategori }}"> {{ $book->kategori }}</option>
 												@else
@@ -94,7 +94,7 @@
 										<div class="form-group row">
 											<label for="stok_buku" class="col-sm-2 col-form-label">Stok Buku</label>
 											<div class="col-sm-10">
-												<input name="stok_buku" type="number" value="{{ $book->stok_buku }}" min="0" class="form-control" id="stok_buku">
+												<input name="stok_buku" type="number" value="{{ $book->stok_buku }}" min="0" class="form-control" id="stok_buku" required>
 											</div>
 										</div>
 

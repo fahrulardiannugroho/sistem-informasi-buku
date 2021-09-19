@@ -12,28 +12,28 @@
 										<div class="form-group row">
 											<label for="nama" class="col-sm-2 col-form-label">Nama</label>
 											<div class="col-sm-10">
-												<input name="nama" type="text" class="form-control" id="nama">
+												<input name="nama" type="text" class="form-control" id="nama" required>
 											</div>
 										</div>
 
 										<div class="form-group row">
 											<label for="statusAnggota" class="col-sm-2 col-form-label">Status Anggota</label>
 											<div class="col-sm-10">
-												<input name="status_anggota" type="text" class="form-control" id="statusAnggota">
+												<input name="status_anggota" type="text" class="form-control" id="statusAnggota" required>
 											</div>
 										</div>
 
 										<div class="form-group row">
 											<label for="alamat" class="col-sm-2 col-form-label">Alamat</label>
 											<div class="col-sm-10">
-												<input name="alamat" type="text" class="form-control" id="alamat">
+												<input name="alamat" type="text" class="form-control" id="alamat" required>
 											</div>
 										</div>
 
 										<div class="form-group row">
 											<label for="nomorHp" class="col-sm-2 col-form-label">Nomor HP</label>
 											<div class="col-sm-10">
-												<input name="nomor_hp" type="number" min="0" class="form-control" id="nomorHp">
+												<input name="nomor_hp" type="number" min="0" class="form-control" id="nomorHp" required>
 											</div>
 										</div>
 

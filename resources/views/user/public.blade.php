@@ -24,10 +24,6 @@
 		background-color: #0589FF !important;
 	}
 
-	.floatingNav {
-			/* border-bottom: 1px solid rgba(0, 0, 0, 0.2); */
-	}
-
 	@media only screen and (max-width: 767px) {
 		.book-title {
 			font-size: 1.2rem;
@@ -116,14 +112,6 @@
 
 @section('scripts')
 		<script>
-			$(document).ready( function () {
-				$(window).scroll(function() {
-					if ($(window).scrollTop() > 10) {
-							$('.kategori-mobile-container').addClass('floatingNav');
-					} else {
-							$('.kategori-mobile-container').removeClass('floatingNav');
-					}
-				});
-			});
+			
 		</script>
 @endsection

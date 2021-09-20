@@ -30,6 +30,12 @@
 			.btn-search {
 				background-color: #0589FF !important;
 			}
+
+			.floatingNav {
+				border-radius: 2px;
+				box-shadow: 0 2px 4px -2px rgba(0,0,0,.2);
+			}
+
 		</style>
 </head>
 <body>
@@ -37,7 +43,7 @@
 				<div class="container">
 					<a class="navbar-brand" href="/">
 						<img src="{{ url('/data_file/LOGO_KIK.png') }}" width="30" height="30" class="d-inline-block align-top" alt="">
-						<b>TBM KIK</b>
+						TBM KIK
 					</a>
 					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 						<span class="navbar-toggler-icon"></span>
@@ -67,6 +73,17 @@
 		<script src="{{ mix('js/app.js') }}"></script>
 		<script src = "http://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js" defer ></script>
 		
+		<script>
+			$(document).ready( function () {
+				$(window).scroll(function() {
+					if ($(window).scrollTop() > 10) {
+							$('.navbar').addClass('floatingNav');
+					} else {
+							$('.navbar').removeClass('floatingNav');
+					}
+				});
+			});
+		</script>
 		@yield('scripts')
 </body>
 </html>

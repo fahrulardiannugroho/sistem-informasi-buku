@@ -7,9 +7,7 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade as PDF;
 use Carbon\Carbon;
-use Facade\FlareClient\Stacktrace\File;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Storage;
 
 class BookController extends Controller
 {

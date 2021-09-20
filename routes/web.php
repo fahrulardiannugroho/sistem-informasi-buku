@@ -15,10 +15,13 @@ use Illuminate\Support\Facades\Auth;
 */
 Auth::routes([
 	//ubah register menjadi false untuk menambah admin baru
-	'register'=> true,
+	'register'=> false,
 ]);
 
 Route::get('/', [App\Http\Controllers\PublicController::class, 'index'])->name('index');
+Route::get('/search', [App\Http\Controllers\PublicController::class, 'search'])->name('search');
+Route::get('/category/{id}', [App\Http\Controllers\PublicController::class, 'category'])->name('category');
+Route::get('/book/{id}', [App\Http\Controllers\PublicController::class, 'show'])->name('show');
 
 Route::group(['middleware' => ['auth']], function () {
 	//dashboard

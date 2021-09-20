@@ -18,20 +18,40 @@
 		
     <!-- Styles -->
     <link href=" {{ mix('css/app.css') }}" rel="stylesheet">
+		@yield('styles')
+		<style>
+			.navbar {
+				background-color: #FFFFFF;
+			}
+			.navbar-brand {
+				color: black;
+			}
+
+			.btn-search {
+				background-color: #0589FF !important;
+			}
+		</style>
 </head>
 <body>
-		<nav class="navbar navbar-expand-lg sticky-top navbar-light py-3">
+		<nav class="navbar navbar-expand-lg navbar-light sticky-top py-3">
 				<div class="container">
-					<a class="navbar-brand" href="/">SisfobukuApp</a>
+					<a class="navbar-brand" href="/">
+						<img src="{{ url('/data_file/LOGO_KIK.png') }}" width="30" height="30" class="d-inline-block align-top" alt="">
+						<b>TBM KIK</b>
+					</a>
 					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 						<span class="navbar-toggler-icon"></span>
 					</button>
 
 					<div class="collapse navbar-collapse" id="navbarSupportedContent">
 						<div class="navbar-nav mr-auto ml-auto">
-							<form class="form-inline my-2 my-lg-0">
-								<input class="form-control mr-sm-2" type="search" placeholder="Mau Cari Buku Apa?" aria-label="Search">
-								<button class="btn btn-success my-2 my-sm-0" type="submit">Search</button>
+							<form class="form-inline my-2 my-lg-0" method="get" action="/search">
+								<div class="input-group">
+									<input type="text" name="search" value="{{ old('search') }}" class="form-control" placeholder="Cari buku apa?" aria-label="Recipient's username" aria-describedby="basic-addon2">
+									<div class="input-group-append">
+										<button type="submit" class="btn btn-primary btn-search">Cari</button>
+									</div>
+								</div>
 							</form>
 						</div>
 						<a class="btn btn-outline-dark" href="{{ route('login') }}">Login Admin</a>
@@ -46,6 +66,7 @@
 
 		<script src="{{ mix('js/app.js') }}"></script>
 		<script src = "http://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js" defer ></script>
+		
 		@yield('scripts')
 </body>
 </html>

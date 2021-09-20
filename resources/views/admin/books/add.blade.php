@@ -61,7 +61,7 @@
 										<div class="form-group row">
 											<label for="id_kategori" class="col-sm-2 col-form-label">Kategori</label>
 											<div class="col-sm-10">
-												<select name="id_kategori" style="width: 100%" id="id_kategori" required>
+												<select name="id_kategori" style="width: 100%" id="id_kategori">
 													<option></option>
 													@foreach ($categories as $category)
 														<option value="{{ $category->id_kategori }}"> {{ $category->kategori }}</option>

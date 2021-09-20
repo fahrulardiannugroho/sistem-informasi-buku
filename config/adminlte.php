@@ -45,7 +45,7 @@ return [
     |
     */
 
-    'logo' => '<b>TBM RIB</b> <span class="badge badge-info">Admin</span>',
+    'logo' => '<b>TBM KIK</b> <span class="badge badge-info">Admin</span>',
     'logo_img' => 'vendor/adminlte/dist/img/LOGO_KIK.png',
     'logo_img_class' => 'brand-image elevation-3',
     'logo_img_xl' => null,
